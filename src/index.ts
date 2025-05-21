@@ -6,6 +6,10 @@ const port: number = 3000;
 
 app.use(express.json());
 
+app.get("/",(req: Request, res: Response) => {
+   res.send("Hi CSB")
+})
+
 // Endpoint to create a user
 app.post('/user', async (req: Request, res: Response) => {
   const { name, age, email } = req.body;

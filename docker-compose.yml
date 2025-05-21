@@ -1,0 +1,25 @@
+version : "3.8"
+
+services : 
+  mongodb:
+    image : mongo
+    container_name : mongodbcontainer
+    ports : 
+      - "27017:27017"
+    volumes :
+      - mongodb_data:/data/db
+  
+  user_app:
+    image: user_app
+    container_name : vigilant_dirac
+    depends_on : 
+      - mongodb
+    ports:
+      - "3000:3000"
+    environment:
+      DB_URL: 'mongodb://mongodbcontainer:27017/myDatabase'
+
+volumes:
+  mongodb_data:
+
+  
